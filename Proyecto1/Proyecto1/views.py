@@ -1,8 +1,7 @@
 from datetime import datetime
 from django.http import HttpResponse
+from django.template import Template, Context
 
-
-from django.http import HttpResponse
 
 def saludo(request):
     return HttpResponse("hola mundo")
@@ -18,3 +17,17 @@ def DiaDeHoy(request):
 def MiNombre(self,nombre):
     Doctexto = f"mi nombre es <br><br> {nombre}"
     return HttpResponse(Doctexto)
+
+def ProbandoTemplate(self):
+    miHtml = open('/Users/Mica/OneDrive/Desktop/coder/Proyecto1/Proyecto1/plantillas/template1.html')
+
+    plantilla = Template(miHtml.read()) #con template leo la ruta para crear la plantilla dentro del contexto
+    
+    miHtml.close() #cerramos el archivo
+
+    miContexto = Context() #en este caso no hay parametros, pero igual hay q crearlo
+
+    documento = plantilla.render(miContexto) #inicializamos renderizamos la plantilla en el doc
+
+    return HttpResponse(documento)
+
