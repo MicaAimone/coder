@@ -19,13 +19,19 @@ def MiNombre(self,nombre):
     return HttpResponse(Doctexto)
 
 def ProbandoTemplate(self):
+    
+    nombre = 'Mica'
+    apellido = 'Aimone'
+    ListaNotas =[1,5,2,9,8]
+     
+    diccionario = {"nombre":nombre, "apellido":apellido,"notas":ListaNotas} 
     miHtml = open('/Users/Mica/OneDrive/Desktop/coder/Proyecto1/Proyecto1/plantillas/template1.html')
 
     plantilla = Template(miHtml.read()) #con template leo la ruta para crear la plantilla dentro del contexto
     
     miHtml.close() #cerramos el archivo
 
-    miContexto = Context() #en este caso no hay parametros, pero igual hay q crearlo
+    miContexto = Context(diccionario) #en este caso no hay parametros, pero igual hay q crearlo
 
     documento = plantilla.render(miContexto) #inicializamos renderizamos la plantilla en el doc
 
